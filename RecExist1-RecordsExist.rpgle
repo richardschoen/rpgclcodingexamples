@@ -1,12 +1,14 @@
-**free
-      ctl-opt dftactgrp(*no);                                                                                          
-      //--------------------------------------------------------------------                                            
-      // Desc: RecordsExist sample subprocedure to query for records found.
-      // https://www.mcpressonline.com/programming/rpg/qualified-data-structures                                        
-      // https://www.rpgpgm.com/2017/03/using-get-diagnostic-for-sql-errors.html                                        
-      //--------------------------------------------------------------------                                            
-        
-        // SQL diagnostics info                                                                                                                
+**free                                                                                                                  
+        ctl-opt dftactgrp(*no);                                                                                         
+        //--------------------------------------------------------------------                                          
+        // Desc: RecordsExist sample subprocedure to query for records found.                                           
+        // Text: RecordsExist Subprocedure Example
+        // Type: SQLRPGLE
+        // https://www.mcpressonline.com/programming/rpg/qualified-data-structures                                      
+        // https://www.rpgpgm.com/2017/03/using-get-diagnostic-for-sql-errors.html                                      
+        //--------------------------------------------------------------------                                          
+                                                                                                                        
+        // SQL diagnostics info                                                                                         
         dcl-s MessageId char(10) ;                                                                                      
         dcl-s MessageId1 varchar(7) ;                                                                                   
         dcl-s MessageId2 like(MessageId1) ;                                                                             
@@ -18,37 +20,44 @@
         dcl-s LastSqlState char(5) ;                                                                                    
         dcl-s LastSqlCode int(10) ;                                                                                     
         dcl-s RtnExist int(10) ;                                                                                        
-
-       // Records exist for table/criteria
+                                                                                                                        
+       // Records exist for table/criteria                                                                              
        dcl-pr RecordsExist int(10);                                                                                     
           ptablename varchar(100) const;                                                                                
           pcriteria varchar(100) const;                                                                                 
        end-pr;                                                                                                          
-     Dcount            S              5P 0                                                                              
-     Dsqlquery1        S           2048          Varying                                                                
-     Dsqlquery2        S           2048          Varying                                                                
-     Dsqlquery3        S           2048          Varying                                                                
-     Dcmd              S          32702          Varying                                                                
-     Drc               S             10i 0                                                                              
+        dcl-s count packed(5);                                                                                          
+        dcl-s sqlquery1 varchar(2048);                                                                                  
+        dcl-s sqlquery2 varchar(2048);                                                                                  
+        dcl-s sqlquery3 varchar(2048);                                                                                  
+        dcl-s cmd varchar(32702);                                                                                       
+        dcl-s rc int(10);                                                                                               
+        dcl-s msg varchar(50);                                                                                          
                                                                                                                         
       // System Header Includes                                                                                         
-      /include qsysinc/qrpglesrc,qcdrcmdd                                                                               
-      /include qsysinc/qrpglesrc,qcdrcmdi                                                                               
-      /include qsysinc/qrpglesrc,qusec                                                                                  
+      /copy qsysinc/qrpglesrc,qcdrcmdd                                                                                  
+      /copy qsysinc/qrpglesrc,qcdrcmdi                                                                                  
+      /copy qsysinc/qrpglesrc,qusec                                                                                     
                                                                                                                         
-      /free                                                                                                             
-                                                           
-       // This record should exist;                                                     
-       rtnexist=RecordsExist('QIWS/QCUSTCDT':'cusnum=938472'); 
-       // This record should not exist;                                                     
-       rtnexist=RecordsExist('QIWS/QCUSTCDT':'cusnum=938472'); 
-       // This should come back as 1 unless no records in table
-       rtnexist=RecordsExist('QIWS/QCUSTCDT':' '); 
+       // This record should exist;                                                                                     
+       rtnexist=RecordsExist('QIWS/QCUSTCDT':'cusnum=938472');                                                          
+       msg='Cust:938472 exists? '  + %char(rtnexist);                                                                   
+       dsply msg;                                                                                                       
+                                                                                                                        
+       // This record should not exist;                                                                                 
+       rtnexist=RecordsExist('QIWS/QCUSTCDT':'cusnum=555555');                                                          
+       msg='Cust:555555 exists? '  + %char(rtnexist);                                                                   
+       dsply msg;                                                                                                       
+                                                                                                                        
+       // This should come back as 1 unless no records in table                                                         
+       rtnexist=RecordsExist('QIWS/QCUSTCDT':' ');                                                                      
+       msg='All records exist? '  + %char(rtnexist);                                                                    
+       dsply msg;                                                                                                       
                                                                                                                         
        // Exit program                                                                                                  
        *inlr=*on;                                                                                                       
        return;                                                                                                          
-                                                                                                                       
+                                                                                                                        
         //----------------------------------------------------------                                                    
         // Proc: Records Exist                                                                                          
         // Desc: Run SQL to see if records exist for selected criteria.                                                 
