@@ -1,5 +1,4 @@
-# rpgclcodingexamples
-This repo will contain misc RPG, CL and command (CMD) coding examples
+# IBM i RPG and CL Coding Examples
+This repo will contain misc RPG, CL and command (CMD) coding examples.
 
-Feel free to submit examples you want posted here. 
-
+Feel free to submit examples you want posted here as issues.
