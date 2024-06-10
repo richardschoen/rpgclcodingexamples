@@ -1,4 +1,4 @@
-# Example RPG and DDL to create table with timestamp fields
+# Example RPG and DDL to create table with timestamp row change field
 This example was created to test the row change timestamp column and whether the value gets set automatically when written with SQL, RPG and DFU. 
 
 ## Creating a row change timestamp column
