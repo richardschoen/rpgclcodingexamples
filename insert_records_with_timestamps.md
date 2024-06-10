@@ -1,5 +1,9 @@
 # Example RPG and DDL to create table with timestamp row change field
-This example was created to test the row change timestamp column and whether the value gets set automatically when written with SQL, RPG and DFU. 
+This example was created to test the row change timestamp column and whether the value gets set automatically when written with SQL, RPG and DFU.   
+
+It would appear that the timestamp auto-updates on both INSERT/Write operations and UPDATE operations via SQL, RLA or DFU. 
+
+This is my unscientific testing.
 
 ## Creating a row change timestamp column
 IBM reading link on rowchange timestamp column     
