@@ -1,6 +1,8 @@
 # Example RPG and DDL to create table with timestamp fields
+This example was created to test the row change timestamp column and whether the value gets set automatically when written with SQL, RPG and DFU. 
 
 ## Creating a row change timestamp column
+IBM reading link on rowchange timestamp column     
 https://www.ibm.com/docs/en/i/7.1?topic=language-creating-row-change-timestamp-column
 
 ## Create ORDERS1 table in QGPL  
@@ -41,3 +43,11 @@ SELECT * FROM QGPL.ORDERS1;
   *INLR = *ON;                                               
   RETURN;
 ```
+
+## Write new record with DFU
+When writing a record via DFU, you do not need to set the timestamp column. The value gets automatically set. 
+
+
+
+
+
