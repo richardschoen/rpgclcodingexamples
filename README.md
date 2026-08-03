@@ -8,3 +8,4 @@ Feel free to submit examples you want posted here as issues or via a pull reques
 **jsontime.rpgle** - Run QSHCURL command and consume JSON with DATA-INTO and YAJL. QSHCURL integration sample.   
 **jsontime2.rpgle** - Run QSHCURL command and consume JSON with YAJL functions sample. QSHCURL integration sample.   
 **RpgDspAtr.rpgle** - Procedure to set display file attributes, including color. 
+**wraptext.rpgle** - Word wrap routines from IT Jungle.    
